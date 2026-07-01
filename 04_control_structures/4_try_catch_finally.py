@@ -5,6 +5,7 @@
 
 # Ejemplo: Manejo de excepciones con try-except-finally
 try:
+    # pyrefly: ignore [division-by-zero]
     result = 10 / 0  # Esto lanzara un ZeroDivisionError
 except ZeroDivisionError as e:
     print('Error:', e)  # Salida (output): Error: division by zero
@@ -32,12 +33,10 @@ else:
 # Usando finally para asegurar la limpieza
 # El bloque finally se usa para liberar recursos o realizar acciones de limpieza.
 try:
-    file = open("example.txt", "r")
-    data = file.read()
+    with open("example.txt", "r") as file:
+        data = file.read()
 except FileNotFoundError:
     print("Archivo no encontrado")
 finally:
-    file.close()  # Asegura que el archivo se cierre sin importar si ocurrio un error
-    print("Archivo cerrado")  # Salida (output): File closed
-
+    print("Archivo cerrado")
 # Nota: La estructura try-except-finally es esencial para escribir codigo Python robusto, asegurando que los recursos se gestionen y los errores se manejen de forma adecuada.
